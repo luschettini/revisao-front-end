@@ -1,28 +1,27 @@
 "use client";
-import React from 'react';
-import Card from "./CardPessoas";
-import { useState } from 'react';
-import CardPessoas from './CardPessoas';
+import { useState, useEffect } from 'react';
+import { productsData } from '../../data/products.js';
+import ProductCard from '@/components/ProductCard/ProductCard.jsx'
+import styles from './page.module.css';
 
-export default function Home(){ 
-  const [pessoas, setPessoas] = useState([
-    {nome: "Marcelo", email: "map@gmail.com", idade: 88},
-    {nome: "Thiago"},
-    {nome: "Luiza", idade:17},
-    {nome: "Julia", email: "juguar@gmail.com", idade:17},
-    {nome: "Ana Julia"},  
+export default function HomePage() {
+  const [products, setProducts] = useState([]);
+  const [productCount, setProductCount] = useState(0);
 
-  ])
+  useEffect(() => {
+    setProducts(productsData);
+  }, []);
+
+
+  useEffect(() => {
+    setProductCount(products.length);
+  }, [products]);
+
   return (
-    <div>
-      {pessoas.map((pessoa, index) => (
-        <CardPessoas
-        key={index}
-        nome={pessoa.nome}
-        email={pessoa.email}
-        idade={pessoa.idade}
-        />
-      ))}    
+    <div className={styles.products}>
+      {products.map(product => (
+       <ProductCard key={product.id} product={product} />
+      ))}
     </div>
   );
 }
