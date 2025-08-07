@@ -2,6 +2,7 @@
 import { useState, useEffect } from 'react';
 import { productsData } from '../../data/products.js';
 import ProductCard from '@/components/ProductCard/ProductCard.jsx'
+import Header from '@/components/Header/Header.jsx'
 import styles from './page.module.css';
 
 export default function HomePage() {
@@ -18,10 +19,13 @@ export default function HomePage() {
   }, [products]);
 
   return (
-    <div className={styles.products}>
-      {products.map(product => (
-       <ProductCard key={product.id} product={product} />
-      ))}
-    </div>
+    <>
+      <Header />
+      <div className={styles.products}>
+        {products.map(product => (
+         <ProductCard key={product.id} product={product} />
+        ))}
+      </div>
+    </>
   );
 }

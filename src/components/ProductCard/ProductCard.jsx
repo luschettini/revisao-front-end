@@ -7,12 +7,13 @@ const ProductCard = ({ product }) => {
       <div className={styles.productimage}>
         <Image
           src={product.image}
-          alt="Responsive"
+          alt={product.title}
           width={800}
           height={600}
           style={{
             width: "100%",
             height: "100%",
+            objectFit: "contain",
           }}
         />
       </div>
